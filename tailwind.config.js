@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  important: true,
   content: ["./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   presets: [],
   darkMode: "media", // or 'class'
@@ -285,40 +286,7 @@ module.exports = {
       DEFAULT: "1",
     },
     fontFamily: {
-      sans: [
-        "ui-sans-serif",
-        "system-ui",
-        "-apple-system",
-        "BlinkMacSystemFont",
-        '"Segoe UI"',
-        "Roboto",
-        '"Helvetica Neue"',
-        "Arial",
-        '"Noto Sans"',
-        "sans-serif",
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-        '"Noto Color Emoji"',
-      ],
-      serif: [
-        "ui-serif",
-        "Georgia",
-        "Cambria",
-        '"Times New Roman"',
-        "Times",
-        "serif",
-      ],
-      mono: [
-        "ui-monospace",
-        "SFMono-Regular",
-        "Menlo",
-        "Monaco",
-        "Consolas",
-        '"Liberation Mono"',
-        '"Courier New"',
-        "monospace",
-      ],
+      "roboto-condensed": ["Roboto Condensed", "sans-serif"],
     },
     fontSize: {
       xs: ["0.75rem", { lineHeight: "1rem" }],
@@ -771,6 +739,7 @@ module.exports = {
       150: "1.5",
     },
     screens: {
+      xsm: "440px",
       sm: "640px",
       md: "768px",
       lg: "1024px",

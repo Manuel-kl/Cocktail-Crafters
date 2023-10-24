@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-fit mx-auto z-10 relative grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5"
+    class="w-fit z-10 relative grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5 mx-7"
   >
     <div
       v-for="(product, index) in products"
@@ -15,11 +15,12 @@
           alt="product"
         />
       </div>
-      <div class="flex flex-col justify-center items-center py-3">
+      <div
+        class="flex flex-col justify-center items-center py-3 gap-3 px-2 text-center"
+      >
         <h2 class="text-green text-2xl font-bold">
           {{ product.strDrink }}
         </h2>
-
         <div class="flex flex-row justify-center items-center gap-2 flex-wrap">
           <h3 class="text-black text-lg font-bold">
             {{ product.strCategory }}
@@ -29,7 +30,12 @@
             {{ product.strAlcoholic }}
           </h4>
         </div>
-        <button>Instructions</button>
+        <router-link
+          to="/instructions"
+          class="text-green text-lg font-bold hover:text-hover-text transition-all duration-300 ease-in-out"
+          >Craft Your Drink
+          <font-awesome-icon :icon="['fas', 'up-right-from-square']" />
+        </router-link>
       </div>
     </div>
   </div>
@@ -37,7 +43,7 @@
 
   <script setup>
 import { ref, onMounted } from "vue";
-import { mapActions, useStore } from "vuex";
+import { useStore } from "vuex";
 
 const store = useStore();
 const products = ref([]);
@@ -47,6 +53,5 @@ onMounted(async () => {
     await store.dispatch("randomCocktailModule/getRandomCocktail");
     products.value.push(store.state.randomCocktailModule.randomCocktail);
   }
-  console.log(products.value);
 });
 </script>
