@@ -143,7 +143,7 @@ module.exports = {
       // 'main-bg-color': '#98E4FF',
       green: "#008080",
       "main-bg-color": "#FFE5E5",
-      test: "#001524",
+      test: "#0802A3",
     }),
     columns: {
       auto: "auto",

@@ -3,7 +3,7 @@
     <nav-bar />
     <section class="grid grid-cols-3 py-5 px-7 bg-green bg-opacity-10">
       <div
-        class="col-span-1 bg-green bg-opacity-10 p-7 flex flex-col items-center"
+        class="col-span-1 bg-green bg-opacity-10 p-7 flex flex-col items-center relative z-20"
       >
         <div class="rounded-sm shadow-md shadow-black">
           <img
@@ -41,16 +41,32 @@
                 {{ cocktail.strGlass }}</span
               >
             </p>
+            <p>
+              Creative Common License Confirmed:
+              <span class="text-lg font-roboto-condensed font-bold text-green">
+                {{ cocktail.strCreativeCommonsConfirmed }}</span
+              >
+            </p>
           </div>
         </div>
       </div>
-      <div class="col-span-2 bg-green bg-opacity-10 p-5 font-roboto-condensed">
-        <h1 class="text-3xl text-black underline">Instructions</h1>
-        <p class="w-8/12 py-3 text-xl">
+      <div
+        class="col-span-2 bg-green bg-opacity-10 p-5 font-roboto-condensed relative z-20"
+      >
+        <h1
+          class="text-3xl text-green underline font-roboto-condensed font-semibold"
+        >
+          Instructions
+        </h1>
+        <p class="w-8/12 py-3 text-xl text-black font-roboto-condensed">
           {{ cocktail.strInstructions }}
         </p>
-        <h2 class="text-black underline text-3xl">Ingredients</h2>
-        <ul class="list-disc list-inside mt-2">
+        <h2
+          class="text-green font-roboto-condensed underline text-3xl font-semibold"
+        >
+          Ingredients
+        </h2>
+        <ul class="list-disc list-inside mt-2 text-black">
           <li class="text-xl" v-if="cocktail.strIngredient1">
             {{ cocktail.strMeasure1 }} {{ cocktail.strIngredient1 }}
           </li>
@@ -99,20 +115,28 @@
         </ul>
       </div>
     </section>
+    <div class="w-fit">
+      <img
+        class="absolute w-fit h-full opacity-25 object-contain right-0 top-0"
+        src="../assets/cocktails-dark-n-stormy.webp"
+        alt=""
+      />
+    </div>
   </div>
 </template>
 <script setup>
 import NavBar from "@/components/NavBar.vue";
 import { onMounted, ref } from "vue";
-
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 
+const route = useRoute();
 const store = useStore();
 const cocktail = ref({});
+const idDrink = route.params.idDrink;
 
 onMounted(async () => {
-  await store.dispatch("randomCocktailModule/getRandomCocktail");
-  cocktail.value = store.state.randomCocktailModule.randomCocktail;
-  console.log(cocktail.value);
+  await store.dispatch("instructionsModule/getInstructions", idDrink);
+  cocktail.value = store.state.instructionsModule.instructions;
 });
 </script>

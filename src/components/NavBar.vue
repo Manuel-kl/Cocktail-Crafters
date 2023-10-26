@@ -4,7 +4,7 @@
   >
     <div class="flex flex-row justify-between items-center">
       <router-link
-        to=""
+        to="/"
         class="text-white font-roboto-condensed text-lg sm:text-xl p-2 hover:text-hover-text transition-all ease duration-300"
         >Home</router-link
       >

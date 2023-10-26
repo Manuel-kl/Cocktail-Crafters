@@ -4,6 +4,9 @@
     <section>
       <IntroComponent @getStarted="handleGetStarted" />
     </section>
+    <section>
+      <pagination-component />
+    </section>
     <section id="random-cocktails">
       <random-cocktails />
     </section>
@@ -16,6 +19,7 @@ import NavBar from "@/components/NavBar.vue";
 import RandomCocktails from "@/components/RandomCocktails.vue";
 import IntroComponent from "@/components/IntroComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
+import PaginationComponent from "@/components/PaginationComponent.vue";
 
 const handleGetStarted = () => {
   console.log("Get Started button clicked in IntroComponent");
