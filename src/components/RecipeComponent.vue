@@ -128,7 +128,7 @@
     </section>
     <div class="w-fit">
       <img
-        class="absolute w-fit h-full opacity-25 object-contain right-0 top-0"
+        class="fixed w-fit h-full opacity-25 object-contain right-0 top-0"
         src="../assets/cocktails-dark-n-stormy.webp"
         alt=""
       />
