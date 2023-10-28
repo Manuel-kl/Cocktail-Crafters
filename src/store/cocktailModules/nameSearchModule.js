@@ -1,27 +1,19 @@
-import cocktailApi from '../../utils/api.js'
+import cocktailApi from "../../utils/api.js";
 
 const nameSearchModule = {
-    namespaced: true,
+  namespaced: true,
 
-    state: {
-        searchResults: [],
-        searchQuery: '',
+  state: {
+    searchResults: [],
+    searchQuery: "",
+  },
+  actions: {
+    async searchByName({ commit, state }) {
+      const response = await cocktailApi.get(`/search.php?s=margarita`);
     },
-    actions: {
-        async searchByName({ commit, state }) {
-            console.log(cocktailApi)
-            const response = await cocktailApi.get(`/search.php?s=margarita`)
-            console.log(response)
-        }
-    },
-    mutations: {
-
-    },
-    getters: {
-
-    },
-
-
-}
+  },
+  mutations: {},
+  getters: {},
+};
 
 export default nameSearchModule;

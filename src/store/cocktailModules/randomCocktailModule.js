@@ -7,8 +7,12 @@ const randomCocktailModule = {
   },
   actions: {
     async getRandomCocktail({ commit }) {
-      const response = await cockTailApi.get(`/random.php`);
-      commit("SET_RANDOM_COCKTAIL", response.data.drinks[0]);
+      try {
+        const response = await cockTailApi.get(`/random.php`);
+        commit("SET_RANDOM_COCKTAIL", response.data.drinks[0]);
+      } catch {
+        console.log(error);
+      }
     },
   },
   mutations: {

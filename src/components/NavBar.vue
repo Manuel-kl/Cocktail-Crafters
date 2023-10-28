@@ -9,10 +9,10 @@
         >Home</router-link
       >
     </div>
-    <div class="gap-2 sm:gap-12 flex items-center">
+    <!-- <div class="gap-2 sm:gap-12 flex items-center">
       <router-link
         to=""
-        class="xsm:block hidden font-roboto-condensed text-white text-lg sm:text-xl shadow-md shadow-white p-2 rounded-lg hover:text-hover-text hover:shadow-hover-text transition-all ease duration-300"
+        class="hidden xsm:block font-roboto-condensed text-white text-lg sm:text-xl shadow-md shadow-white p-2 rounded-lg hover:text-hover-text hover:shadow-hover-text transition-all ease duration-300"
         >Click to search</router-link
       >
       <router-link
@@ -35,7 +35,7 @@
       class="text-white font-roboto-condensed text-xl bg-green bg-opacity-60 shadow-green shadow-sm p-3 rounded-md hover:text-hover-text transition-all ease duration-300"
     >
       Click to search Cocktails/Ingredients
-    </router-link>
+    </router-link> -->
   </div>
 </template>
 <script setup></script>

@@ -1,13 +1,18 @@
 <template>
+  <div v-show="loading">
+    <loading-component />
+  </div>
   <div>
     <nav-bar />
-    <section class="grid grid-cols-3 py-5 px-7 bg-green bg-opacity-10">
+    <section
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-5 px-7 bg-green bg-opacity-10"
+    >
       <div
         class="col-span-1 bg-green bg-opacity-10 p-7 flex flex-col items-center relative z-20"
       >
-        <div class="rounded-sm shadow-md shadow-black">
+        <div class="shadow-md shadow-black">
           <img
-            class="w w-full object-cover rounded-md"
+            class="w w-full object-cover rounded-sm"
             :src="cocktail.strDrinkThumb"
             :alt="cocktail.strDrink"
           />
@@ -51,14 +56,14 @@
         </div>
       </div>
       <div
-        class="col-span-2 bg-green bg-opacity-10 p-5 font-roboto-condensed relative z-20"
+        class="col-span-1 lg:col-span-2 bg-green bg-opacity-10 p-5 font-roboto-condensed relative z-20"
       >
         <h1
           class="text-3xl text-green underline font-roboto-condensed font-semibold"
         >
           Instructions
         </h1>
-        <p class="w-8/12 py-3 text-xl text-black font-roboto-condensed">
+        <p class="lg:w-8/12 py-3 text-xl text-black font-roboto-condensed">
           {{ cocktail.strInstructions }}
         </p>
         <h2
@@ -115,6 +120,12 @@
         </ul>
       </div>
     </section>
+    <section class="border-t border-t-green py-3 bg-green bg-opacity-10">
+      <h2 class="py-3 px-5 text-2xl font-roboto-condensed font-bold text-green">
+        View more cocktails
+      </h2>
+      <cocktails-component :products="randomCocktails" />
+    </section>
     <div class="w-fit">
       <img
         class="absolute w-fit h-full opacity-25 object-contain right-0 top-0"
@@ -126,17 +137,38 @@
 </template>
 <script setup>
 import NavBar from "@/components/NavBar.vue";
-import { onMounted, ref } from "vue";
+import CocktailsComponent from "@/components/CocktailsComponent.vue";
+import LoadingComponent from "@/components/LoadingComponent.vue";
+
+import { onMounted, ref, watchEffect } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
 const store = useStore();
 const cocktail = ref({});
-const idDrink = route.params.idDrink;
+const loading = ref(true);
+const randomCocktails = ref([]);
+let idDrink = route.params.idDrink;
 
 onMounted(async () => {
+  getCocktails();
+  watchEffect(() => {
+    idDrink = route.params.idDrink;
+    getCocktails();
+    window.scrollTo(0, 0);
+  });
+});
+
+const getCocktails = async () => {
+  loading.value = true;
   await store.dispatch("instructionsModule/getInstructions", idDrink);
   cocktail.value = store.state.instructionsModule.instructions;
-});
+
+  for (let i = 0; i < 4; i++) {
+    await store.dispatch("randomCocktailModule/getRandomCocktail");
+    randomCocktails.value.push(store.state.randomCocktailModule.randomCocktail);
+  }
+  loading.value = false;
+};
 </script>

@@ -25,4 +25,10 @@ const router = createRouter({
     routes,
 });
 
+router.beforeResolve((to, from, next) => {
+    // Track a pageview in Matomo
+    window._paq.push(["setCustomUrl", to.fullPath]);
+    window._paq.push(["trackPageView"]);
+    next();
+});
 export default router;

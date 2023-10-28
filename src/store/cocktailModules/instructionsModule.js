@@ -1,23 +1,27 @@
 import cocktailApi from "@/utils/api";
 
 const instructionsModule = {
-    namespaced: true,
+  namespaced: true,
 
-    state: {
-        instructions: {},
+  state: {
+    instructions: {},
+  },
+  actions: {
+    async getInstructions({ commit }, idDrink) {
+      try {
+        const response = await cocktailApi.get(`/lookup.php?i=${idDrink}`);
+        commit("setInstructions", response.data.drinks[0]);
+      } catch (error) {
+        console.log(error);
+      }
     },
-    actions: {
-        async getInstructions({ commit }, idDrink) {
-            const response = await cocktailApi.get(`/lookup.php?i=${idDrink}`);
-            commit("setInstructions", response.data.drinks[0]);
-        },
+  },
+  mutations: {
+    setInstructions(state, instructions) {
+      state.instructions = instructions;
     },
-    mutations: {
-        setInstructions(state, instructions) {
-            state.instructions = instructions;
-        },
-    },
-    getters: {},
+  },
+  getters: {},
 };
 
 export default instructionsModule;

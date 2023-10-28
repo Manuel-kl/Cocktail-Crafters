@@ -5,9 +5,13 @@ import store from "./store";
 import "./assets/tailwind.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUpRightFromSquare,
+  faChevronDown,
+  faX,
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faUpRightFromSquare);
+library.add(faUpRightFromSquare, faChevronDown, faX);
 createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
   .use(store)

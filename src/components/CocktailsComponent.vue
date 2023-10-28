@@ -6,7 +6,7 @@
       v-for="(product, index) in products"
       :key="index"
       :product="product"
-      class="z-10 relative shadow-green shadow-sm rounded-lg bg-white flex flex-col mx-2 xsm:w-fit w-72 justify-between"
+      class="z-10 relative shadow-green shadow-sm rounded-lg bg-white flex flex-col mx-2 xsm:w-fit sm:w-72 md:w-fit w-72 justify-between"
     >
       <div>
         <div class="w-full rounded-md flex">

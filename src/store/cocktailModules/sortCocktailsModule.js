@@ -1,22 +1,26 @@
 import cocktailApi from "@/utils/api";
 
 const sortCocktailsModule = {
-    namespaced: true,
-    state: {
-        sortedCocktails: [],
+  namespaced: true,
+  state: {
+    sortedCocktails: [],
+  },
+  actions: {
+    async getSortedCocktails({ commit }, letter) {
+      try {
+        const response = await cocktailApi.get(`/search.php?f=${letter}`);
+        commit("SET_SORTED_COCKTAILS", response.data.drinks);
+      } catch {
+        console.log(error);
+      }
     },
-    actions: {
-        async getSortedCocktails({ commit }, letter) {
-            const response = await cocktailApi.get(`/search.php?f=${letter}`);
-            commit("SET_SORTED_COCKTAILS", response.data.drinks);
-        },
+  },
+  mutations: {
+    SET_SORTED_COCKTAILS(state, cocktails) {
+      state.sortedCocktails = cocktails;
     },
-    mutations: {
-        SET_SORTED_COCKTAILS(state, cocktails) {
-            state.sortedCocktails = cocktails;
-        },
-    },
-    getters: {},
+  },
+  getters: {},
 };
 
 export default sortCocktailsModule;

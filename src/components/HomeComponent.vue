@@ -12,6 +12,9 @@
     </section>
     <footer-component />
   </div>
+  <div v-show="loading">
+    <LoadingComponent />
+  </div>
 </template>
 
 <script setup>
@@ -20,14 +23,22 @@ import RandomCocktails from "@/components/RandomCocktails.vue";
 import IntroComponent from "@/components/IntroComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
 import PaginationComponent from "@/components/PaginationComponent.vue";
+import LoadingComponent from "@/components/LoadingComponent.vue";
+
+import { ref } from "vue";
 
 const handleGetStarted = () => {
   console.log("Get Started button clicked in IntroComponent");
-  // scroll into random-cocktails
   document
     .getElementById("random-cocktails")
     .scrollIntoView({ behavior: "smooth" });
 };
+
+const loading = ref(true);
+
+setTimeout(() => {
+  loading.value = false;
+}, 1000);
 </script>
 
 <style>
