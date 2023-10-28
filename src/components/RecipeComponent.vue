@@ -12,7 +12,7 @@
       >
         <div class="shadow-md shadow-black">
           <img
-            class="w w-full object-cover rounded-sm"
+            class="w-full object-cover rounded-sm"
             :src="cocktail.strDrinkThumb"
             :alt="cocktail.strDrink"
           />
@@ -21,16 +21,18 @@
           class="flex flex-col items-center w-full mt-5 font-roboto-condensed"
         >
           <h1
-            class="text-4xl px-3 rounded-lg shadow-md shadow-green hover:shadow-black font-bold font-roboto-condensed text-green py-3"
+            class="text-xl 2xsm:text-4xl px-3 rounded-lg shadow-md shadow-green hover:shadow-black font-bold font-roboto-condensed text-green py-3"
           >
             {{ cocktail.strDrink }}
           </h1>
           <div
-            class="flex flex-col items-center text-lg font-roboto-condensed mt-5"
+            class="flex flex-col items-start xsm:items-center text-lg font-roboto-condensed mt-5"
           >
             <p>
               Category:
-              <span class="text-lg font-roboto-condensed font-bold text-green">
+              <span
+                class="text-md xsm:text-lg font-roboto-condensed font-bold text-green"
+              >
                 {{ cocktail.strCategory }}</span
               >
             </p>

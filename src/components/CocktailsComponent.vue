@@ -6,7 +6,8 @@
       v-for="(product, index) in products"
       :key="index"
       :product="product"
-      class="z-10 relative shadow-green shadow-sm rounded-lg bg-white flex flex-col mx-2 xsm:w-fit sm:w-72 md:w-fit w-72 justify-between"
+      @click="goToInstructions(product.idDrink)"
+      class="cursor-pointer z-10 relative shadow-green shadow-sm rounded-lg bg-white flex flex-col mx-2 xsm:w-fit sm:w-72 md:w-fit w-72 justify-between hover:shadow-md transition-all duration-300 ease-in-out hover:scale-105"
     >
       <div>
         <div class="w-full rounded-md flex">
@@ -29,7 +30,7 @@
               {{ product.strCategory }}
             </p>
             <span class="h-1 w-1 rounded-full bg-green"></span>
-            <p class="text-black text-sm xsm:text-md md:lg font-bold">
+            <p class="text-black text-sm xsm:text-md lg:text-lg font-bold">
               {{ product.strAlcoholic }}
             </p>
           </div>
@@ -48,8 +49,13 @@
 </template>
 <script setup>
 import { defineProps } from "vue";
+import router from "../router/index.js";
 
 const props = defineProps({
   products: Array,
 });
+
+const goToInstructions = (id) => {
+  router.push(`/instructions/${id}`);
+};
 </script>
