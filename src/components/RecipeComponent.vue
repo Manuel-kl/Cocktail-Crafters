@@ -165,6 +165,7 @@ const getCocktails = async () => {
   await store.dispatch("instructionsModule/getInstructions", idDrink);
   cocktail.value = store.state.instructionsModule.instructions;
 
+  randomCocktails.value = [];
   for (let i = 0; i < 4; i++) {
     await store.dispatch("randomCocktailModule/getRandomCocktail");
     randomCocktails.value.push(store.state.randomCocktailModule.randomCocktail);
